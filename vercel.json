@@ -1,15 +1,19 @@
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" },
-    { "source": "/api", "destination": "/api/index.py" }
-  ],
-  "headers": [
+  "functions": {
+    "api/index.py": {
+      "runtime": "@vercel/python"
+    }
+  },
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
-      ]
+      "src": "/api/(.*)",
+      "dest": "/api/index.py",
+      "methods": ["POST", "GET", "OPTIONS"]
+    },
+    {
+      "src": "/api",
+      "dest": "/api/index.py",
+      "methods": ["POST", "GET", "OPTIONS"]
     }
   ]
 }
