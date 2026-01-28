@@ -108,11 +108,15 @@ def handler(event, context):
         analysis_json = json.loads(response.text)
 
         return {
-            "statusCode": 200,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps(analysis_json, ensure_ascii=False)
-        }
-
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+    },
+    "body": json.dumps(analysis_json, ensure_ascii=False)
+}
     except Exception as e:
         print(f" Critical Error: {str(e)}")
         return {
